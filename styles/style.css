@@ -34,6 +34,7 @@
 .header {
   width: min(100%, var(--max-widht));
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding-top: clamp(7.5rem, 8rem, 8.5rem);
   padding-bottom: 25px;
@@ -54,7 +55,7 @@
   margin-bottom: 25px;
 }
 
-.theme__menu_list {
+.theme-menu__list {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -89,3 +90,227 @@
   transition: scale ease 0.3s;
 }
 
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+}
+
+.theme-menu__button:focus-visible::after {
+  scale: 1;
+}
+
+.theme-menu__button::before {
+content: "▶";
+position: absolute;
+left: -20px;
+visibility: hidden;
+animation: arrow 0.5s ease-in-out infinite alternate;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.theme-menu__button:disabled::before {
+  visibility: visible;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 100px 0 50px;
+  width: min(100%, var(--max-width));
+}
+
+.block {
+  background-color: var(--background-color);
+  border: 2px solid currentColor;
+}
+
+.block__title {
+  padding: 5px 10px;
+  font-variation-settings: "wght" var(--title-font-weight);
+  font-size: 18px;
+}
+
+.watermark {
+  position: absolute;
+  top: clamp(1.55rem, 1.6rem, 1.7rem);
+  right: clamp(0.7rem, 1.1rem, 1.6rem);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  opacity: 0.5;
+  paint-order: stroke fill;
+  text-shadow: -1px 0 var(--background-color), 0 1px var(--background-color),
+  1px 0 var(--background-color), 0 -1px var(--background-color);
+}
+
+@supports (--webkit-text-stroke: 1px var(--background-color)) {
+  .watermark {
+    --webkit-text-stroke: 1px var(--background-color);
+    text-shadow: none;
+  }
+}
+
+.block__img-countainer {
+  position: relative;
+  margin: 0;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}
+
+.block__img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.block__content {
+  padding: 25px;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.block__text {
+  margin-bottom: 27px;
+}
+
+.block__text:last-of-type {
+  margin-bottom: 25px;
+}
+
+.block__button {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.block__icon-button {
+  display: flex;
+  padding: 0;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition: border 0.3 ease;
+}
+
+.block__icon-button:focus {
+  outline: none;
+}
+
+.block__icon-button:focus-visible {
+  border: 2px solid currentColor;
+}
+
+.block__like-button {
+  min-width: 130px;
+  padding: 10px 17px;
+}
+
+.button-fill {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  background: var(--background-color, #fff);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  transition: box-shadow ease 0.3s;
+}
+
+.button-fill:focus {
+  outline: none;
+}
+
+.button-fill:focus-visible {
+  box-shadow: 2px 2px 0 0 var(--accent-color);
+}
+
+.button-fill::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  border: inherit;
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale ease-in-out 0.5s;
+}
+
+.button-fill:hover::before {
+  scale: 1;
+}
+
+.button-fill > * {
+  color: var(--button-text-color);
+  mix-blend-mode: difference;
+  position: relative;
+}
+
+.footer {
+  background: var(--background-color, #fff);
+  max-width: calc(100% * 310 / 375);
+}
+
+.footer__button {
+  gap: 8px;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__icon {
+  width: clamp(1.3rem, 1.45rem, 1.8rem);
+}
+
+.dialog__save {
+  color: var(--accent-color);
+  border: 2px solid currentColor;
+  background-color: var(--background-color, #fff);
+  padding: 30px clamp(1.875rem, 2.1rem, 2.5rem);
+}
+
+.dialog__save::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.dialog__save[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: clamp(21.3rem, 21.8rem, 22.3rem);
+}
+
+.dialog__content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dialog__icon {
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+}
+
+.dialog__text {
+  font-family: var(--accent-font);
+  font-size: 14px;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  width: 100%;
+  text-transform: uppercase;
+  padding: 9px 17px;
+}
